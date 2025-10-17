@@ -1,0 +1,56 @@
+---
+title: "Question_1"
+output: html_document
+---
+
+```{r}
+#Required Library
+library(dplyr)
+library(ggplot2)
+```
+
+
+```{r}
+# Data Filtration
+data <- background_clean
+data <- data %>%
+  mutate(
+    pstat_courses_total = rowSums(select(., matches("PSTAT|pstat")), na.rm = TRUE)
+  )
+table(data$pstat_courses_total)
+table(data$stat.prof)
+```
+
+```{r}
+#Boxplot
+ggplot(data, aes(x = stat.prof, y = pstat_courses_total, fill = stat.prof)) +
+  geom_boxplot() +
+  labs(
+    title = "Number of PSTAT Courses by Proficiency Level",
+    x = "Proficiency Level",
+    y = "Number of PSTAT Courses"
+  ) +
+  theme_minimal()
+
+```
+
+```{r}
+#Average PSTAT Courses by Proficiency Level
+data_summary <- data %>%
+  group_by(stat.prof) %>%
+  summarize(mean_courses = mean(pstat_courses_total, na.rm = TRUE),
+            sd_courses = sd(pstat_courses_total, na.rm = TRUE))
+
+ggplot(data_summary, aes(x = stat.prof, y = mean_courses, fill = stat.prof)) +
+  geom_col() +
+  geom_errorbar(aes(ymin = mean_courses - sd_courses, ymax = mean_courses + sd_courses), width = 0.2) +
+  labs(
+    title = "Average PSTAT Courses by Proficiency Level",
+    x = "Proficiency Level",
+    y = "Average Number of PSTAT Courses"
+  ) +
+  theme_minimal()
+
+```
+
+
