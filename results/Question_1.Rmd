@@ -10,7 +10,6 @@ library(dplyr)
 library(ggplot2)
 ```
 
-
 ```{r}
 # Data Filtration
 data <- background_clean
@@ -20,6 +19,33 @@ data <- data %>%
   )
 table(data$pstat_courses_total)
 table(data$stat.prof)
+```
+
+```{r}
+# Pie chart data preparation
+prof_summary <- data %>%
+  group_by(stat.prof) %>%
+  summarize(count = n()) %>%
+  mutate(percentage = count / sum(count) * 100)
+
+ggplot(prof_summary, aes(x = "", y = percentage, fill = stat.prof)) +
+  geom_col(width = 1) +
+  coord_polar(theta = "y") +
+  geom_text(aes(label = paste0(round(percentage, 1), "%")),
+            position = position_stack(vjust = 0.5),
+            color = "white",
+            size = 4) +
+  labs(
+    title = "Distribution of Students by Statistics Proficiency Level",
+    x = NULL,
+    y = NULL,
+    fill = "Proficiency Level"
+  ) +
+  theme_void() +
+  theme(
+    legend.position = "right",
+    plot.title = element_text(hjust = 0.5, face = "bold")
+  )
 ```
 
 ```{r}
@@ -51,7 +77,30 @@ ggplot(data_summary, aes(x = stat.prof, y = mean_courses, fill = stat.prof)) +
     y = "Average Number of PSTAT Courses"
   ) +
   theme_minimal()
+```
+
+
+```{r}
+data_summary <- data_summary %>%
+  mutate(stat.prof = factor(stat.prof, levels = c("beg", "int", "adv")))
+
+ggplot(data_summary, aes(x = stat.prof, y = mean_courses, fill = stat.prof)) +
+  geom_col(width = 0.6) +
+  geom_line(aes(group = 1), color = "darkblue", linewidth = 1) +
+  geom_point(color = "darkblue", size = 3) +
+  labs(
+    title = "Average PSTAT Courses by Proficiency Level (Trend)",
+    x = "Proficiency Level",
+    y = "Average Number of PSTAT Courses"
+  ) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold"))
 
 ```
+
+
+
+
+
 
 
