@@ -1,5 +1,6 @@
 ---
 title: "Question_1"
+author: "Ella Yang, Cecilia Jiang"
 output: html_document
 ---
 
