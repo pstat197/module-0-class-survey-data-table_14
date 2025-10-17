@@ -3,7 +3,6 @@ title: "Question_1"
 author: "Ella Yang, Cecilia Jiang"
 output: html_document
 ---
-
 ```{r}
 #Required Library
 library(dplyr)
@@ -99,8 +98,37 @@ ggplot(data_summary, aes(x = stat.prof, y = mean_courses, fill = stat.prof)) +
 ```
 
 
+```{r}
+# check numeric
+data$stat.prof_num <- factor(data$stat.prof,
+                         levels = c("beg", "int", "adv"),
+                         labels = c("Beginner", "Intermediate", "Advanced"))
+data$stat.prof_num <- as.numeric(data$stat.prof_num)
+```
 
+```{r}
+# anova
+model1 <- aov(pstat_courses_total ~ stat.prof_num, data = data)
+summary(model1)
+```
+We found that the p-value (p = 0.00842) is less than the significance level $\alpha$ = 0.05, indicating a statistically significant difference in the number of PSTAT courses taken across different levels of statistics proficiency.
 
+```{r}
+# TukeyHSD
+model2 <- aov(pstat_courses_total ~ stat.prof, data = data)
+TukeyHSD(model2)
+```
+The Tukey HSD post-hoc test revealed significant differences among proficiency levels.
 
+Advanced students had taken significantly more PSTAT courses than beginners (p = 0.0062 < $\alpha$ = 0.05), and intermediate students also took more courses than beginners (p = 0.033 < $\alpha$ = 0.05).
 
+However, there was no significant difference between intermediate and advanced students (p = 0.59 > $\alpha$ = 0.05).
+These results suggest that greater coursework exposure is associated with higher statistical proficiency, especially when comparing beginners to the other groups.
+
+# Summary
+In this analysis, we explored the relationship between students' statistics proficiency level and the number of PSTAT courses that they have taken.
+
+Through descriptive statistics and visualization, we could conclude that students with higher proficiency levels generally completed more PSTAT courses. The one-way ANOVA confirmed that this difference was statistically significant (p = 0.008 < $\alpha$ = 0.05). Further, Tukey’s HSD post-hoc comparisons revealed that both intermediate and advanced students had taken significantly more PSTAT courses than beginners, while no significant difference was found between intermediate and advanced groups.
+
+These findings indicate that greater exposure to PSTAT coursework is positively associated with higher levels of statistical proficiency, emphasizing the importance of continuous coursework in developing stronger data analysis skills.
 
