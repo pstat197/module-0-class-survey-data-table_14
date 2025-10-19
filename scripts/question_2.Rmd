@@ -43,7 +43,7 @@ process_df %>%
 ```{r}
 levels(process_df$prog.prof) = c("beg", "int", "adv")
 
-process_df %>%
+p1 = process_df %>%
   ggplot(aes(x=num_cs_course, y=prog.prof, fill=prog.prof)) +
   geom_boxplot() +
   labs(x="Number of CS Courses Have Taken",
@@ -51,6 +51,15 @@ process_df %>%
        title="Distribution of Number of CS Courses by Programming Proficiency",
        fill="Prog. Proficiency") +
   theme_article()
+
+print(p1)
+
+ggsave("Distribution of Number of CS Courses by Programming Proficiency.png",
+       plot = p1,
+       dpi = 300, 
+       bg = "white",
+       path="/Users/jiangyibing/Desktop/PSTAT197A/module0/results",
+       width = 6, height = 3)
 ```
 
 
