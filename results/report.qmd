@@ -43,6 +43,18 @@ We analyzed anonymized intake-survey responses from two sections to answer one q
 
 **What we did.** We summarized the distribution of proficiency levels (Beginner, Intermediate, Advanced) and compared total PSTAT coursework across groups using descriptive plots (composition chart, boxplot, and bar chart of means with uncertainty). We then ran a one-way ANOVA and Tukey’s HSD post-hoc comparisons.
 
+### Proficiency composition
+![Distribution of Students by Statistics Proficiency Level](Question_1_files/figure-html/unnamed-chunk-3-1.png)
+
+### PSTAT courses by proficiency (boxplot)
+![Number of PSTAT Courses by Proficiency Level](Question_1_files/figure-html/unnamed-chunk-4-1.png)
+
+### Average PSTAT courses (mean ± SD)
+![Average PSTAT Courses by Proficiency Level](Question_1_files/figure-html/unnamed-chunk-5-1.png)
+
+### Average PSTAT courses (trend)
+![Average PSTAT Courses by Proficiency Level (Trend)](Question_1_files/figure-html/unnamed-chunk-6-1.png)
+
 **Results.**
 - Visual summaries show an upward trend: students reporting higher statistics proficiency tend to have taken more PSTAT courses.
 - One-way ANOVA: p = 0.008 (less than alpha = 0.05), indicating a statistically significant difference in coursework totals across proficiency levels.
@@ -52,3 +64,6 @@ We analyzed anonymized intake-survey responses from two sections to answer one q
   - Intermediate vs Advanced: p = 0.59 (not significant).
 
 **Interpretation.** Within this sample, greater exposure to PSTAT coursework is associated with higher self-reported statistics proficiency, especially when comparing Beginners to Intermediate and Advanced students. We treat these results as descriptive evidence from the sample of offered-seat students and avoid over-interpreting extremes; the focus is on clear, center-based summaries supported by standard inference.
+
+
+
