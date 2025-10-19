@@ -1,0 +1,11 @@
+---
+title: "Analysis For Question2 Result"
+author: "Janice Jiang"
+output: html_document
+---
+
+In question 2 analysis, we mainly want to explore the relationship between number of CS courses a student has taken and the self-reported programming confidence/proficiency level. In the survey data, we have each student's reported confidence score and proficiency level, which don't need to be processed for analysis. However, we need to compute the CS courses each student has taken. It seems to be simple at first, just adding each column named "CS_". However, we soon realized that some statistics courses are also programming-based courses; for example, PSTAT100 is a R-based project course. Thus, some students might not have taken much CS courses, but they have taken those PSTAT programming courses, so they might report a high programming confidence score (which explains why some students with 0/1 CS courses still have a high confidence score). 
+
+Here are some results from our analysis on this question. The first visualization shows that students with advanced programming proficiency have generally taken more CS courses than intermediate or beginner groups in median, suggesting that greater coursework exposure is associated with higher skill levels. Overall, the number of CS courses appears to align with programming proficiency, though some overlap suggests other factors also influence skill development.
+
+The second visualization highlights differing self-assessment standards among students. While both advanced and intermediate groups report high confidence levels—often around 4 on the scale—the overlap suggests that students may interpret what qualifies as “advanced” or “intermediate” differently. Many intermediate students rate themselves as confident as those in the advanced group, indicating that programming confidence does not always align neatly with self-reported proficiency levels.
