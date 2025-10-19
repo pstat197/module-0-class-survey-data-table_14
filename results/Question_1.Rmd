@@ -1,7 +1,9 @@
 ---
 title: "Question_1"
 author: "Ella Yang, Cecilia Jiang"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 ```{r}
 #Required Library
