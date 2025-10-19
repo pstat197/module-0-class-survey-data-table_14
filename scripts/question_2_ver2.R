@@ -31,6 +31,21 @@ model <- lm(prof ~ cs_total, background)
 summary(model)
 
 
+plot <- ggplot(background, aes(x = cs_total, y = prof)) +
+  geom_jitter(width = 0.2, height = 0.1, aes(color = as.factor(prof)), size = 3, alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE, color = "black", linetype = "dashed") +
+  scale_color_brewer(palette = "Set1", name = "Proficiency Level",
+                     labels = c("Beginner", "Intermediate", "Advanced")) +
+  labs(
+    title = "Relationship Between Number of CS Courses and Programming Proficiency",
+    x = "Number of CS Courses Taken",
+    y = "Programming Proficiency (1 = Beg, 2 = Int, 3 = Adv)"
+  ) +
+  theme_minimal(base_size = 14)
+
+### Save Output
+ggsave("results/question_2_plot.png", plot, width = 8, height = 6, dpi = 300)
+
 
 
 
