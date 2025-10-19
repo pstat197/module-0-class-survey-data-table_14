@@ -64,13 +64,22 @@ ggsave("Distribution of Number of CS Courses by Programming Proficiency.png",
 
 
 ```{r}
-process_df %>%
+p2 = process_df %>%
   ggplot(aes(y=prog.comf, fill=prog.prof)) +
   geom_bar() +
   facet_wrap(~prog.prof, nrow=3) +
   labs(title="Distribution of Programming Confidence by Programming Proficiency",
        fill="Prog. Proficiency") +
   theme_article()
+
+print(p2)
+
+ggsave("Distribution of Programming Confidence by Programming Proficiency.png",
+       plot = p2,
+       dpi = 300, 
+       bg = "white",
+       path="/Users/jiangyibing/Desktop/PSTAT197A/module0/results",
+       width = 6, height = 4)
 ```
 
 
