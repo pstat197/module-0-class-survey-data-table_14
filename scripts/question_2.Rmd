@@ -82,7 +82,6 @@ ggsave("Distribution of Programming Confidence by Programming Proficiency.png",
        width = 6, height = 4)
 ```
 
-
 ```{r}
 library(stringr)
 link_df = process_df %>% inner_join(interest, by="response_id") %>%
