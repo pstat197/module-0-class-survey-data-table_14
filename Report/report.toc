@@ -1,0 +1,14 @@
+\contentsline {section}{\numberline {1}Executive summary}{1}{section.1}%
+\contentsline {section}{\numberline {2}Data description}{2}{section.2}%
+\contentsline {section}{\numberline {3}Question of interest}{2}{section.3}%
+\contentsline {section}{\numberline {4}Findings (Q1)}{2}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Proficiency composition}{3}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}PSTAT courses by proficiency (boxplot)}{4}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Average PSTAT courses (mean ± SD)}{5}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Average PSTAT courses (trend)}{6}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Inferential check (supports the visuals)}{6}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}Important decisions (for reproducibility)}{7}{subsection.4.6}%
+\contentsline {subsection}{\numberline {4.7}Interpretation and scope}{7}{subsection.4.7}%
+\contentsline {section}{\numberline {5}Findings (Q2)}{7}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Proficiency composition}{8}{subsection.5.1}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
