@@ -1,7 +1,7 @@
 ---
 title: "Analysis of class surveys"
 subtitle: "Part 1: Is self-reported statistics proficiency associated with the number of PSTAT courses completed?"
-author: "Justin Zhou,Ella Yang,Lucy Cao,Cecilia Jiang,Janice Jiang,Wendy Zhu"
+author: "Justin Zhou, Ella Yang, Lucy Cao, Cecilia Jiang, Janice Jiang, Wendy Zhu (Equal Contribution)"
 date: last-modified
 published-title: "Updated"
 editor: visual
@@ -24,11 +24,11 @@ library(ggplot2)
 library(knitr)
 ```
 
-## Executive summary
+# Executive summary
 
-For question 1, we analyzed anonymized intake-survey responses from two sections to answer one question: **Is self-reported statistics proficiency associated with the number of PSTAT courses completed?** Using descriptive plots and a one-way ANOVA with Tukey’s post-hoc test (implemented in `Question_1.Rmd`), we find evidence of a statistically significant association: respondents reporting higher statistics proficiency have, on average, completed more PSTAT courses. Because the responses are a **sample** of offered-seat students, we emphasize clear visuals and center-focused summaries appropriate for modest (n).
+For **Question 1**, we analyzed anonymized intake-survey responses from two sections to answer one question: **Is self-reported statistics proficiency associated with the number of PSTAT courses completed?** Using descriptive plots and a one-way ANOVA with Tukey’s post-hoc test (implemented in `Question_1.Rmd`), we find evidence of a statistically significant association: respondents reporting higher statistics proficiency have, on average, completed more PSTAT courses. Because the responses are a **sample** of offered-seat students, we emphasize clear visuals and center-focused summaries appropriate for modest (n).
 
-For question 2, we analyzed anonymized intake-survey responses from two PSTAT 197A sections to answer one question: **Does self-reported programming proficiency increase with the number of CS courses completed?** Using descriptive visualizations and a simple linear regression model (implemented in `Question_2.Rmd`), we find a clear positive relationship: students who have taken more CS courses tend to report higher programming proficiency levels. Boxplots and scatterplots both indicate that advanced students generally have greater course exposure than intermediate or beginner peers, though some overlap suggests that informal or cross-disciplinary learning (e.g., PSTAT programming courses) also contributes to proficiency. Because the dataset represents a modest sample of enrolled students, our analysis focuses on clear graphical summaries and interpretable trends rather than formal inference.
+For **Question 2**, we analyzed anonymized intake-survey responses from two PSTAT 197A sections to answer one question: **Does self-reported programming proficiency increase with the number of CS courses completed?** Using descriptive visualizations and a simple linear regression model (implemented in `Question_2.Rmd`), we find a clear positive relationship: students who have taken more CS courses tend to report higher programming proficiency levels. Boxplots and scatterplots both indicate that advanced students generally have greater course exposure than intermediate or beginner peers, though some overlap suggests that informal or cross-disciplinary learning (e.g., PSTAT programming courses) also contributes to proficiency. Because the dataset represents a modest sample of enrolled students, our analysis focuses on clear graphical summaries and interpretable trends rather than formal inference.
 
 ## Data description
 
@@ -43,9 +43,7 @@ For question 2, we analyzed anonymized intake-survey responses from two PSTAT 19
 1.  **Q1.** Does self-reported statistics proficiency relate to the number of PSTAT courses completed?
 2.  **Q2.** How will the number of Computer Science courses that a student takes affects the students' programming proficiency?
 
-## Findings (Q1)
-
-**Question.** Is self-reported statistics proficiency associated with the number of PSTAT courses completed?
+# Part 1: Is self-reported statistics proficiency associated with the number of PSTAT courses completed?
 
 **What we did.** We summarized the distribution of proficiency levels (Beginner, Intermediate, Advanced) and compared total PSTAT coursework across groups using descriptive plots (composition chart, boxplot, and mean ± SD bar chart with a trend view). We then ran a one-way ANOVA and Tukey’s HSD post-hoc comparisons using the code in `results/Question_1.Rmd`.
 
@@ -85,24 +83,13 @@ The trend line provides a compact view of the monotone relationship: more comple
 
 ------------------------------------------------------------------------
 
-### Important decisions (for reproducibility)
-
--   Constructed `pstat_courses_total` by summing the binary PSTAT course indicators per student.\
--   Treated `stat.prof` as an **ordered** factor with levels `beg < int < adv`.\
--   **NA** in `stat.prof` are shown in composition plots but excluded from ANOVA/Tukey.\
--   Emphasized **medians/IQRs** (boxplot) alongside means ± SD to avoid over-interpreting tails for modest sample sizes.
-
 ### Interpretation and scope
 
 Within this sample of students offered a seat, **greater PSTAT coursework is associated with higher self-reported statistics proficiency**, especially when comparing **Beginners** to **Intermediate/Advanced**. Because this is a respondent sample with some item nonresponse, we treat results as **descriptive evidence** rather than a population claim.
 
 **Possible extensions.** Report group counts and medians in the text; check robustness with a non-parametric Kruskal–Wallis test; examine whether particular PSTAT sequences (e.g., 120/122/126) align most with higher self-ratings.
 
-## Findings (Q2)
-
-**Question.**
-
-How will the number of Computer Science courses that a student takes affects the students' programming proficiency?
+# Part 2: How will the number of Computer Science courses that a student takes affects the students' programming proficiency?
 
 **What we did.** We summarized the distribution of programming proficiency levels (Beginner, Intermediate, Advanced) and compared total CS coursework (and alao some pstat cs related courses) across groups using descriptive visualizations (boxplot, grouped bar chart, and regression scatterplot with a fitted trend line). We then fit a simple linear model to quantify the relationship between the number of CS courses taken, programming comfort, and programming proficiency, using the code in `results/Question_2.Rmd`.
 
@@ -166,12 +153,12 @@ This overlap suggests that while formal coursework contributes strongly to skill
 
 **Conclusion:** This visualization reinforces the finding that coursework exposure is positively associated with programming proficiency, but not deterministically so. The modest slope of the regression line and the visible group overlap imply that programming ability is multifaceted—it reflects not only classroom experience but also self-learning, cross-disciplinary training (e.g., PSTAT courses), and students’ personal engagement with coding practice.
 
-## Work distribution
+# Work distribution
 
 Our group divided the tasks based on individual focus areas to ensure an efficient and balanced workflow.
 
-Ella & Cecilia: Analyzed the relationship between the number of PSTAT courses taken and students’ statistical proficiency. They cleaned the dataset, computed the total number of PSTAT courses per student, and visualized the corresponding proficiency distributions.
+**Ella & Cecilia**: Analyzed the relationship between the number of PSTAT courses taken and students’ statistical proficiency. They cleaned the dataset, computed the total number of PSTAT courses per student, and visualized the corresponding proficiency distributions.
 
-Janice & Wendy: Investigated how the number of CS courses taken affects students’ programming proficiency. They generated summary statistics, developed regression and visualization models (including boxplots and scatterplots), and interpreted the results.
+**Janice & Wendy**: Investigated how the number of CS courses taken affects students’ programming proficiency. They generated summary statistics, developed regression and visualization models (including boxplots and scatterplots), and interpreted the results.
 
-Lucy & Justin: Edited the final report, ensuring consistency in format, clarity, and interpretation. They also wrote the executive summary and refined the overall discussion to connect the two sub-questions into a cohesive conclusion.
+**Lucy & Justin**: Edited the final report, ensuring consistency in format, clarity, and interpretation. They also wrote the executive summary and refined the overall discussion to connect the two sub-questions into a cohesive conclusion.
