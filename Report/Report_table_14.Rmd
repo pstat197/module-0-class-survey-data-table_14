@@ -1,6 +1,0 @@
----
-title: "Report_table_14"
-author: "Ella Yang, Cecilia Jiang, Janice Jiang, Lucy Cao, Wendy Zhu"
-output: html_document
----
-
