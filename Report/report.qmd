@@ -26,17 +26,22 @@ library(knitr)
 
 ## Executive summary
 
-We analyzed anonymized intake-survey responses from two sections to answer one question: **Is self-reported statistics proficiency associated with the number of PSTAT courses completed?** Using descriptive plots and a one-way ANOVA with Tukey’s post-hoc test (implemented in `Question_1.Rmd`), we find evidence of a statistically significant association: respondents reporting higher statistics proficiency have, on average, completed more PSTAT courses. Because the responses are a **sample** of offered-seat students, we emphasize clear visuals and center-focused summaries appropriate for modest (n).
+For question 1, we analyzed anonymized intake-survey responses from two sections to answer one question: **Is self-reported statistics proficiency associated with the number of PSTAT courses completed?** Using descriptive plots and a one-way ANOVA with Tukey’s post-hoc test (implemented in `Question_1.Rmd`), we find evidence of a statistically significant association: respondents reporting higher statistics proficiency have, on average, completed more PSTAT courses. Because the responses are a **sample** of offered-seat students, we emphasize clear visuals and center-focused summaries appropriate for modest (n).
+
+For question 2, we analyzed anonymized intake-survey responses from two PSTAT 197A sections to answer one question: **Does self-reported programming proficiency increase with the number of CS courses completed?** Using descriptive visualizations and a simple linear regression model (implemented in `Question_2.Rmd`), we find a clear positive relationship: students who have taken more CS courses tend to report higher programming proficiency levels. Boxplots and scatterplots both indicate that advanced students generally have greater course exposure than intermediate or beginner peers, though some overlap suggests that informal or cross-disciplinary learning (e.g., PSTAT programming courses) also contributes to proficiency. Because the dataset represents a modest sample of enrolled students, our analysis focuses on clear graphical summaries and interpretable trends rather than formal inference.
 
 ## Data description
 
 -   **How obtained.** Google Forms intake survey; exported and shared as two section files with identifiers removed plus a metadata file.\
 -   **Sample.** Respondents from two course sections; treated as a **sample** from all offered-seat students (not necessarily a census).\
--   **Measurements.** Demographics; self-assessed **proficiency** and **comfort** (Likert 1–5); indicators for prior coursework; and project preferences. For Q1, we use `stat.prof` (statistics proficiency; ordered beginner → intermediate → advanced) and `pstat_courses_total` (sum of PSTAT course indicators per student).
+-   **Measurements.** Demographics; self-assessed **proficiency** and **comfort** (Likert 1–5); indicators for prior coursework; and project preferences.
+    -   For Q1, we use `stat.prof` (statistics proficiency; ordered beginner → intermediate → advanced) and `pstat_courses_total` (sum of PSTAT course indicators per student).
+    -   For Q2, we use `prog.prof` (programming proficiency; ordered beginner → intermediate → advanced), `prog.comf` and `cs_total` (sum of CS course indicators per student, including `CS9`, `CS16`, `CS130`, `CS165`, `CS5`, and programming-intensive PSTAT courses such as `PSTAT100`, `PSTAT131`, and `PSTAT134`).
 
 ## Question of interest
 
 1.  **Q1.** Does self-reported statistics proficiency relate to the number of PSTAT courses completed?
+2.  **Q2.** How will the number of Computer Science courses that a student takes affects the students' programming proficiency?
 
 ## Findings (Q1)
 
@@ -99,9 +104,7 @@ Within this sample of students offered a seat, **greater PSTAT coursework is ass
 
 How will the number of Computer Science courses that a student takes affects the students' programming proficiency?
 
-**Overview** For this question, we investigate on whether the number of computer science (CS) courses a student has taken is associated with their self-reported programming proficiency level. The goal is to determine if greater exposure to CS coursework corresponds to higher programming skill levels, as measured by students’ proficiency categories (beginner, intermediate, advanced) in the survey dataset.
-
-**Data and Methodology** We derived the variable cs_total, representing the total number of CS courses each student completed, by summing binary indicators for each course. In addition to core CS courses (e.g., CS 9, CS 16, CS 130), we also included PSTAT 100, 131, and 134, since these courses require programming in R and involve data manipulation, which contributes to programming experience. Programming proficiency was encoded numerically (1 = Beginner, 2 = Intermediate, 3 = Advanced) to facilitate regression and visualization. We then ran a simple linear regression model to evaluate the relationship between cs_total and prof.
+**What we did.** We summarized the distribution of programming proficiency levels (Beginner, Intermediate, Advanced) and compared total CS coursework (and alao some pstat cs related courses) across groups using descriptive visualizations (boxplot, grouped bar chart, and regression scatterplot with a fitted trend line). We then fit a simple linear model to quantify the relationship between the number of CS courses taken, programming comfort, and programming proficiency, using the code in `results/Question_2.Rmd`.
 
 ### Proficiency composition
 
@@ -133,7 +136,11 @@ Intermediate students’ confidence overlaps considerably with the advanced grou
 
 The variation also highlights that confidence does not always correspond directly to technical ability—students’ previous experiences (e.g., PSTAT courses, self-study, or non-CS exposure) may also shape how confident they feel when coding.
 
-![Graph 3: Relationship Between Number of CS Courses and Programming Proficiency](Untitled/question_2_plot.png) **Description:** This scatterplot displays the relationship between the number of CS courses taken (x-axis) and students’ self-reported programming proficiency (y-axis, coded as 1 = Beginner, 2 = Intermediate, 3 = Advanced). Each dot represents one student, color-coded by proficiency group—red for beginners, blue for intermediates, and green for advanced. The black dashed line shows the fitted linear regression trend from the model: Proficiency=β0 + β1(Number of CS Courses) + ϵ
+![Graph 3: Relationship Between Number of CS Courses and Programming Proficiency](Untitled/question_2_plot.png) **Description:** This scatterplot displays the relationship between the number of CS courses taken (x-axis) and students’ self-reported programming proficiency (y-axis, coded as 1 = Beginner, 2 = Intermediate, 3 = Advanced). Each dot represents one student, color-coded by proficiency group—red for beginners, blue for intermediates, and green for advanced. The black dashed line shows the fitted linear regression trend from the model:
+
+$$
+Proficiency = \beta_0 + \beta_1(\text{Number of CS Courses}) + \epsilon
+$$
 
 **Interpretation:** The plot shows a positive upward trend, suggesting that students who have taken more CS courses tend to report higher programming proficiency levels.
 
