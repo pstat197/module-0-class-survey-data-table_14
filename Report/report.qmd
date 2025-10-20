@@ -6,8 +6,9 @@ date: last-modified
 published-title: "Updated"
 editor: visual
 format:
-  html:
-    code-copy: true
+  pdf:
+    toc: true
+    number-sections: true
 execute:
   message: false
   warning: false
@@ -45,19 +46,19 @@ We analyzed anonymized intake-survey responses from two sections to answer one q
 
 ### Proficiency composition
 
-![Distribution of Students by Statistics Proficiency Level](Question_1_files/figure-html/unnamed-chunk-3-1.png)
+![Distribution of Students by Statistics Proficiency Level](Untitled/unnamed-chunk-3-1.png)
 
 ### PSTAT courses by proficiency (boxplot)
 
-![Number of PSTAT Courses by Proficiency Level](Question_1_files/figure-html/unnamed-chunk-4-1.png)
+![Number of PSTAT Courses by Proficiency Level](Untitled/unnamed-chunk-4-1.png)
 
 ### Average PSTAT courses (mean ± SD)
 
-![Average PSTAT Courses by Proficiency Level](Question_1_files/figure-html/unnamed-chunk-5-1.png)
+![Average PSTAT Courses by Proficiency Level](Untitled/unnamed-chunk-5-1.png)
 
 ### Average PSTAT courses (trend)
 
-![Average PSTAT Courses by Proficiency Level (Trend)](Question_1_files/figure-html/unnamed-chunk-6-1.png)
+![Average PSTAT Courses by Proficiency Level (Trend)](Untitled/unnamed-chunk-6-1.png)
 
 **Results.** - Visual summaries show an upward trend: students reporting higher statistics proficiency tend to have taken more PSTAT courses. - One-way ANOVA: p = 0.008 (less than alpha = 0.05), indicating a statistically significant difference in coursework totals across proficiency levels. - Tukey’s HSD pairwise comparisons: - Advanced vs Beginner: p = 0.0062 (significant). - Intermediate vs Beginner: p = 0.033 (significant). - Intermediate vs Advanced: p = 0.59 (not significant).
 
