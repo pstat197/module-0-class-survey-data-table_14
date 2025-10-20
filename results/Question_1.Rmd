@@ -1,0 +1,136 @@
+---
+title: "Question_1"
+author: "Ella Yang, Cecilia Jiang"
+output:
+  html_document: default
+  pdf_document: default
+---
+```{r}
+#Required Library
+library(dplyr)
+library(ggplot2)
+```
+
+```{r}
+# Data Filtration
+data <- background_clean
+data <- data %>%
+  mutate(
+    pstat_courses_total = rowSums(select(., matches("PSTAT|pstat")), na.rm = TRUE)
+  )
+table(data$pstat_courses_total)
+table(data$stat.prof)
+```
+
+```{r}
+# Pie chart data preparation
+prof_summary <- data %>%
+  group_by(stat.prof) %>%
+  summarize(count = n()) %>%
+  mutate(percentage = count / sum(count) * 100)
+
+ggplot(prof_summary, aes(x = "", y = percentage, fill = stat.prof)) +
+  geom_col(width = 1) +
+  coord_polar(theta = "y") +
+  geom_text(aes(label = paste0(round(percentage, 1), "%")),
+            position = position_stack(vjust = 0.5),
+            color = "white",
+            size = 4) +
+  labs(
+    title = "Distribution of Students by Statistics Proficiency Level",
+    x = NULL,
+    y = NULL,
+    fill = "Proficiency Level"
+  ) +
+  theme_void() +
+  theme(
+    legend.position = "right",
+    plot.title = element_text(hjust = 0.5, face = "bold")
+  )
+```
+
+```{r}
+#Boxplot
+ggplot(data, aes(x = stat.prof, y = pstat_courses_total, fill = stat.prof)) +
+  geom_boxplot() +
+  labs(
+    title = "Number of PSTAT Courses by Proficiency Level",
+    x = "Proficiency Level",
+    y = "Number of PSTAT Courses"
+  ) +
+  theme_minimal()
+
+```
+
+```{r}
+#Average PSTAT Courses by Proficiency Level
+data_summary <- data %>%
+  group_by(stat.prof) %>%
+  summarize(mean_courses = mean(pstat_courses_total, na.rm = TRUE),
+            sd_courses = sd(pstat_courses_total, na.rm = TRUE))
+
+ggplot(data_summary, aes(x = stat.prof, y = mean_courses, fill = stat.prof)) +
+  geom_col() +
+  geom_errorbar(aes(ymin = mean_courses - sd_courses, ymax = mean_courses + sd_courses), width = 0.2) +
+  labs(
+    title = "Average PSTAT Courses by Proficiency Level",
+    x = "Proficiency Level",
+    y = "Average Number of PSTAT Courses"
+  ) +
+  theme_minimal()
+```
+
+
+```{r}
+data_summary <- data_summary %>%
+  mutate(stat.prof = factor(stat.prof, levels = c("beg", "int", "adv")))
+
+ggplot(data_summary, aes(x = stat.prof, y = mean_courses, fill = stat.prof)) +
+  geom_col(width = 0.6) +
+  geom_line(aes(group = 1), color = "darkblue", linewidth = 1) +
+  geom_point(color = "darkblue", size = 3) +
+  labs(
+    title = "Average PSTAT Courses by Proficiency Level (Trend)",
+    x = "Proficiency Level",
+    y = "Average Number of PSTAT Courses"
+  ) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold"))
+
+```
+
+
+```{r}
+# check numeric
+data$stat.prof_num <- factor(data$stat.prof,
+                         levels = c("beg", "int", "adv"),
+                         labels = c("Beginner", "Intermediate", "Advanced"))
+data$stat.prof_num <- as.numeric(data$stat.prof_num)
+```
+
+```{r}
+# anova
+model1 <- aov(pstat_courses_total ~ stat.prof_num, data = data)
+summary(model1)
+```
+We found that the p-value (p = 0.00842) is less than the significance level $\alpha$ = 0.05, indicating a statistically significant difference in the number of PSTAT courses taken across different levels of statistics proficiency.
+
+```{r}
+# TukeyHSD
+model2 <- aov(pstat_courses_total ~ stat.prof, data = data)
+TukeyHSD(model2)
+```
+The Tukey HSD post-hoc test revealed significant differences among proficiency levels.
+
+Advanced students had taken significantly more PSTAT courses than beginners (p = 0.0062 < $\alpha$ = 0.05), and intermediate students also took more courses than beginners (p = 0.033 < $\alpha$ = 0.05).
+
+However, there was no significant difference between intermediate and advanced students (p = 0.59 > $\alpha$ = 0.05).
+These results suggest that greater coursework exposure is associated with higher statistical proficiency, especially when comparing beginners to the other groups.
+
+# Summary
+In this analysis, we explored the relationship between students' statistics proficiency level and the number of PSTAT courses that they have taken.
+
+Through descriptive statistics and visualization, we could conclude that students with higher proficiency levels generally completed more PSTAT courses. The one-way ANOVA confirmed that this difference was statistically significant (p = 0.008 < $\alpha$ = 0.05). Further, Tukey’s HSD post-hoc comparisons revealed that both intermediate and advanced students had taken significantly more PSTAT courses than beginners, while no significant difference was found between intermediate and advanced groups.
+
+These findings indicate that greater exposure to PSTAT coursework is positively associated with higher levels of statistical proficiency, emphasizing the importance of continuous coursework in developing stronger data analysis skills.
+

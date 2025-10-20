@@ -1,0 +1,98 @@
+---
+title: "Question 2"
+author: "Janice Jiang"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(dplyr)
+library(ggplot2)
+library(readr)
+library(egg)
+```
+
+```{r}
+background <- read_csv('/Users/jiangyibing/Desktop/PSTAT197A/module0/data/background-clean.csv',
+                       show_col_types = F)
+interest <- read_csv('/Users/jiangyibing/Desktop/PSTAT197A/module0/data/interest-clean.csv',
+                     show_col_types = F)
+```
+
+```{r}
+process_df = background %>% 
+  mutate(num_cs_course = rowSums(select(., c(starts_with("CS"), 
+                                             PSTAT100, PSTAT131, PSTAT134)), 
+                                 na.rm = TRUE))
+```
+
+```{r}
+process_df %>% 
+  ggplot(aes(x=num_cs_course)) +
+  geom_bar() +
+  theme_article()
+```
+
+```{r}
+process_df %>% 
+  ggplot(aes(x=prog.comf)) +
+  geom_bar() +
+  theme_article()
+```
+
+
+```{r}
+levels(process_df$prog.prof) = c("beg", "int", "adv")
+
+p1 = process_df %>%
+  ggplot(aes(x=num_cs_course, y=prog.prof, fill=prog.prof)) +
+  geom_boxplot() +
+  labs(x="Number of CS Courses Have Taken",
+       y="Programming Proficiency",
+       title="Distribution of Number of CS Courses by Programming Proficiency",
+       fill="Prog. Proficiency") +
+  theme_article()
+
+print(p1)
+
+ggsave("Distribution of Number of CS Courses by Programming Proficiency.png",
+       plot = p1,
+       dpi = 300, 
+       bg = "white",
+       path="/Users/jiangyibing/Desktop/PSTAT197A/module0/results",
+       width = 6, height = 3)
+```
+
+
+```{r}
+p2 = process_df %>%
+  ggplot(aes(y=prog.comf, fill=prog.prof)) +
+  geom_bar() +
+  facet_wrap(~prog.prof, nrow=3) +
+  labs(title="Distribution of Programming Confidence by Programming Proficiency",
+       fill="Prog. Proficiency") +
+  theme_article()
+
+print(p2)
+
+ggsave("Distribution of Programming Confidence by Programming Proficiency.png",
+       plot = p2,
+       dpi = 300, 
+       bg = "white",
+       path="/Users/jiangyibing/Desktop/PSTAT197A/module0/results",
+       width = 6, height = 4)
+```
+
+```{r}
+library(stringr)
+link_df = process_df %>% inner_join(interest, by="response_id") %>%
+  mutate(num_interest_area = str_count(area, ";") + 1)
+```
+
+```{r}
+link_df %>% ggplot(
+  aes(x=num_interest_area, y=as.factor(prog.comf), fill=as.factor(prog.comf))) +
+  geom_boxplot() +
+  theme_article()
+```
+
+
