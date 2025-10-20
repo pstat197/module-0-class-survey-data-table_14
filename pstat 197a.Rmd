@@ -88,3 +88,12 @@ This overlap suggests that while formal coursework contributes strongly to skill
 **Conclusion:**
 This visualization reinforces the finding that coursework exposure is positively associated with programming proficiency, but not deterministically so.
 The modest slope of the regression line and the visible group overlap imply that programming ability is multifaceted—it reflects not only classroom experience but also self-learning, cross-disciplinary training (e.g., PSTAT courses), and students’ personal engagement with coding practice.
+
+## Work distribution 
+Our group divided the tasks based on individual focus areas to ensure an efficient and balanced workflow.
+
+Ella & Cecilia: Analyzed the relationship between the number of PSTAT courses taken and students’ statistical proficiency. They cleaned the dataset, computed the total number of PSTAT courses per student, and visualized the corresponding proficiency distributions.
+
+Janice & Wendy: Investigated how the number of CS courses taken affects students’ programming proficiency. They generated summary statistics, developed regression and visualization models (including boxplots and scatterplots), and interpreted the results.
+
+Lucy & Justin: Edited the final report, ensuring consistency in format, clarity, and interpretation. They also wrote the executive summary and refined the overall discussion to connect the two sub-questions into a cohesive conclusion.
