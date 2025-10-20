@@ -1,7 +1,14 @@
 ---
-title: "Analysis of class surveys"
-subtitle: "Part 1: Is self-reported statistics proficiency associated with the number of PSTAT courses completed?"
-author: "Justin Zhou, Ella Yang, Lucy Cao, Cecilia Jiang, Janice Jiang, Wendy Zhu (Equal Contribution)"
+title: "Module 0 Analysis of class surveys (Table 14)"
+author:
+  - name: "Justin Zhou"
+  - name: "Ella Yang"
+  - name: "Lucy Cao"
+  - name: "Cecilia Jiang"
+  - name: "Janice Jiang"
+  - name: "Wendy Zhu"
+    affiliation: "Equal Contribution"
+    
 date: last-modified
 published-title: "Updated"
 editor: visual
@@ -45,25 +52,26 @@ For **Question 2**, we analyzed anonymized intake-survey responses from two PSTA
 
 # Part 1: Is self-reported statistics proficiency associated with the number of PSTAT courses completed?
 
-**What we did.** We summarized the distribution of proficiency levels (Beginner, Intermediate, Advanced) and compared total PSTAT coursework across groups using descriptive plots (composition chart, boxplot, and mean ± SD bar chart with a trend view). We then ran a one-way ANOVA and Tukey’s HSD post-hoc comparisons using the code in `results/Question_1.Rmd`.
+**What we did** 
+We summarized the distribution of proficiency levels (Beginner, Intermediate, Advanced) and compared total PSTAT coursework across groups using descriptive plots (composition chart, boxplot, and mean ± SD bar chart with a trend view). We then ran a one-way ANOVA and Tukey’s HSD post-hoc comparisons using the code in `results/Question_1.Rmd`.
 
-### Proficiency composition
+## Proficiency composition
 
 ![Distribution of Students by Statistics Proficiency Level](Untitled/unnamed-chunk-3-1.png)
 
 Most respondents did not record a proficiency level (NA is the largest slice). Among those who did, Advanced is more common than Intermediate, and Beginner is the smallest group. This matters for two reasons: (1) our comparisons are essentially between a larger Advanced group and smaller Intermediate/Beginner groups, and (2) inferential tests should exclude the NA category since it is missing-by-design.
 
-### PSTAT courses by proficiency (boxplot)
+## PSTAT courses by proficiency (boxplot)
 
 ![Number of PSTAT Courses by Proficiency Level](Untitled/unnamed-chunk-4-1.png)
 
 The center and spread of completed PSTAT courses shift upward from Beginner -\> Intermediate -\> Advanced. Beginners cluster at the low end; Intermediate has a higher median with modest spread; Advanced shows both a higher median and a longer right tail (some students have many courses). The NA group appears at zero because proficiency was not reported; we do not use NA in tests. Overlapping IQRs are limited, which is consistent with a real difference in central tendency.
 
-### Average PSTAT courses (mean ± SD)
+## Average PSTAT courses (mean ± SD)
 
 ![Average PSTAT Courses by Proficiency Level](Untitled/unnamed-chunk-5-1.png) Group means increase with proficiency: Beginners average the fewest PSTAT courses, Intermediate is higher, and Advanced is highest. Error bars (\$\pm\$1 SD) overlap somewhat between Intermediate and Advanced, suggesting those two groups are similar on average. This aligns with the Tukey HSD results: both Intermediate and Advanced differ from Beginners, while Intermediate and Advanced are not statistically different from each other.
 
-### Average PSTAT courses (trend)
+## Average PSTAT courses (trend)
 
 ![Average PSTAT Courses by Proficiency Level (Trend)](Untitled/unnamed-chunk-6-1.png)
 
@@ -71,7 +79,7 @@ The trend line provides a compact view of the monotone relationship: more comple
 
 ------------------------------------------------------------------------
 
-### Inferential check (supports the visuals)
+## Inferential check (supports the visuals)
 
 -   **One-way ANOVA:** p = 0.008 (alpha = 0.05) -\> mean PSTAT courses differ across proficiency groups.
 -   **Tukey’s HSD pairwise comparisons:**
@@ -83,7 +91,7 @@ The trend line provides a compact view of the monotone relationship: more comple
 
 ------------------------------------------------------------------------
 
-### Conclusion
+## Conclusion
 
 Within this sample of students offered a seat, **greater PSTAT coursework is associated with higher self-reported statistics proficiency**, especially when comparing **Beginners** to **Intermediate/Advanced**. Because this is a respondent sample with some item nonresponse, we treat results as **descriptive evidence** rather than a population claim.
 
@@ -91,9 +99,10 @@ Within this sample of students offered a seat, **greater PSTAT coursework is ass
 
 # Part 2: How will the number of Computer Science courses that a student takes affects the students' programming proficiency?
 
-**What we did.** We summarized the distribution of programming proficiency levels (Beginner, Intermediate, Advanced) and compared total CS coursework (and alao some pstat cs related courses) across groups using descriptive visualizations (boxplot, grouped bar chart, and regression scatterplot with a fitted trend line). We then fit a simple linear model to quantify the relationship between the number of CS courses taken, programming comfort, and programming proficiency, using the code in `results/Question_2.Rmd`.
+**What we did** 
+We summarized the distribution of programming proficiency levels (Beginner, Intermediate, Advanced) and compared total CS coursework (and alao some pstat cs related courses) across groups using descriptive visualizations (boxplot, grouped bar chart, and regression scatterplot with a fitted trend line). We then fit a simple linear model to quantify the relationship between the number of CS courses taken, programming comfort, and programming proficiency, using the code in `results/Question_2.Rmd`.
 
-### Relationship Between CS Coursework and Programming Proficiency
+## Relationship Between CS Coursework and Programming Proficiency
 
 ![Graph 1: Distribution of Number of CS Courses by Programming Proficiencyl](Untitled/Distribution%20of%20Number%20of%20CS%20Courses%20by%20Programming%20Proficiency.png) **Description** This boxplot displays the distribution of the total number of CS courses taken for each programming proficiency group (beginner, intermediate, advanced). The x-axis represents the number of CS courses taken, while the y-axis categorizes students by their self-reported proficiency.
 
@@ -107,7 +116,7 @@ Within this sample of students offered a seat, **greater PSTAT coursework is ass
 
 Overall, this pattern **supports the hypothesis that taking more CS courses generally corresponds to higher programming proficiency.** However, the overlap between intermediate and advanced groups suggests that coursework alone does not fully determine skill level—experience outside formal classes might also influence proficiency.
 
-### Distribution of Programming Confidence by Proficiency Level
+## Distribution of Programming Confidence by Proficiency Level
 ![Graph 2: Distribution of Number of CS Courses by Programming Proficiencyl](Untitled/Distribution%20of%20Programming%20Confidence%20by%20Programming%20Proficiency.png) **Description:** This bar chart shows how students’ self-reported confidence levels (1–5 scale) vary across different proficiency groups. Each bar indicates the count of students who selected a given confidence rating.
 
 **Interpretation:** Students in the advanced group mostly report high confidence levels, typically 4 or 5, indicating consistency between their proficiency and self-assessment.
@@ -124,7 +133,7 @@ Intermediate students’ confidence overlaps considerably with the advanced grou
 
 The variation also highlights that confidence does not always correspond directly to technical ability—students’ previous experiences (e.g., PSTAT courses, self-study, or non-CS exposure) may also shape how confident they feel when coding.
 
-### Linear Relationship between Number of CS Courses and Programming Proficiency
+## Linear Relationship between Number of CS Courses and Programming Proficiency
 ![Graph 3: Relationship Between Number of CS Courses and Programming Proficiency](Untitled/question_2_plot.png) **Description:** This scatterplot displays the relationship between the number of CS courses taken (x-axis) and students’ self-reported programming proficiency (y-axis, coded as 1 = Beginner, 2 = Intermediate, 3 = Advanced). Each dot represents one student, color-coded by proficiency group—red for beginners, blue for intermediates, and green for advanced. The black dashed line shows the fitted linear regression trend from the model:
 
 $$
@@ -156,7 +165,7 @@ This overlap suggests that while formal coursework contributes strongly to skill
 **Conclusion:** 
 This visualization reinforces the finding that coursework exposure is positively associated with programming proficiency, but not deterministically so. The modest slope of the regression line and the visible group overlap imply that programming ability is multifaceted—it reflects not only classroom experience but also self-learning, cross-disciplinary training (e.g., PSTAT courses), and students’ personal engagement with coding practice.
 
-### Conclusion
+## Conclusion
 Across all analyses for question two, we find consistent evidence that students who have completed more computer science courses tend to report higher levels of programming proficiency and confidence. The boxplot and regression model both show a positive association between coursework exposure and proficiency level, suggesting that structured academic training contributes meaningfully to skill development. However, the overlapping distributions among intermediate and advanced students, as well as the wide range of confidence levels within each group, indicate that programming ability is not determined by coursework alone. Factors such as self-study, prior experience in statistics or data science classes, and individual motivation also appear to shape both perceived and actual proficiency. Taken together, our findings highlight that while formal CS coursework builds a strong foundation, students develop programming expertise through a combination of classroom learning, applied practice, and independent exploration.
 
 # Final Conslusion 
